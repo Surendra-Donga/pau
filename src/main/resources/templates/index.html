@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PAU Banking System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #1a73e8;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e6f4ea;
+            color: #1e8e3e;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>PAU Banking</h2>
+        <form action="/process" method="POST">
+            <div class="form-group">
+                <label for="method">Select Payment Method</label>
+                <select id="method" name="method">
+                    <option value="Card">Card Payment (Primary)</option>
+                    <option value="UPI">UPI Payment (Qualifier)</option>
+                    <option value="NetBanking">Net Banking (Qualifier)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter Amount" required min="1">
+            </div>
+            <button type="submit">Process Payment</button>
+        </form>
+        
+        <div th:if="${message}" class="message">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+</body>
+</html>
