@@ -19,7 +19,7 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            width: 400px;
+            width: 500px;
         }
         h2 {
             text-align: center;
@@ -64,6 +64,29 @@
             text-align: center;
             font-weight: bold;
         }
+        .history {
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+        .history h3 {
+            text-align: center;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -87,6 +110,26 @@
         
         <div th:if="${message}" class="message">
             <p th:text="${message}"></p>
+        </div>
+
+        <div class="history">
+            <h3>Payment History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Amount</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="payment : ${payments}">
+                        <td th:text="${payment.method}"></td>
+                        <td th:text="${payment.amount}"></td>
+                        <td th:text="${#temporals.format(payment.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
